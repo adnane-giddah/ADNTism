@@ -18,5 +18,10 @@ export const STANDALONE =
 export const SITE = 'https://adnane-giddah.github.io/ADNTism';
 export const publicUrl = (path: string) => (NATIVE ? SITE : location.origin + BASE) + path;
 
-/** Release downloads (stable names, always the latest release). */
-export const APK_URL = 'https://github.com/adnane-giddah/ADNTism/releases/latest/download/epsilon.apk';
+/**
+ * The Android app, served by the website itself (the deploy copies the latest release into the site).
+ * Same-origin, so the phone downloads it in the normal browser — not in a Custom Tab, whose download sheet
+ * can hang at 100 %. The GitHub release link stays as a fallback.
+ */
+export const APK_URL = href('/epsilon.apk');
+export const APK_RELEASE_URL = 'https://github.com/adnane-giddah/ADNTism/releases/latest/download/epsilon.apk';

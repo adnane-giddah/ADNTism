@@ -4,6 +4,10 @@ name: Deploy website
 on:
   push:
     branches: [main]
+  # Redeploy after every app build so the site serves the newest APK.
+  workflow_run:
+    workflows: ['Build Android app']
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -28,6 +32,8 @@ jobs:
       - run: npx tsc --noEmit
       - run: npx vitest run --testTimeout=60000
       - run: npm run build:pages
+      - name: Serve the latest Android app from the site itself (same-origin download)
+        run: curl -fsSL -o dist/epsilon.apk https://github.com/${{ github.repository }}/releases/latest/download/epsilon.apk || echo "::warning::No APK release yet"
       - uses: actions/configure-pages@v5
         with:
           enablement: true

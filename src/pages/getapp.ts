@@ -3,7 +3,7 @@
 // web app full-screen and offline. Computer: the browser's own install (Chrome / Edge), also offline.
 import { h, icon, icons } from '../core/dom';
 import { canInstall, onInstallChange, platform, promptInstall } from '../core/install';
-import { APK_URL } from '../core/route';
+import { APK_RELEASE_URL, APK_URL } from '../core/route';
 import { toast } from './chrome';
 
 export function getAppSection() {
@@ -38,7 +38,8 @@ export function getAppSection() {
         'App · APK download',
         h('p', null, 'The full lab as a phone app. Plays with no connection at all.'),
         h('ol', null, h('li', null, 'Download the APK.'), h('li', null, 'Open it; if asked, allow installing from your browser.'), h('li', null, 'Launch epsilon from your home screen.')),
-        h('div', { class: 'ga-act' }, h('a', { class: 'btn brand', href: APK_URL, download: 'epsilon.apk', rel: 'noopener' }, icon(icons.download), 'Download APK')),
+        h('div', { class: 'ga-act' }, h('a', { class: 'btn brand', href: APK_URL, download: 'epsilon.apk' }, icon(icons.download), 'Download APK')),
+        h('p', { class: 'ga-sub' }, 'Download stuck? Open Files → Downloads — it is usually already there. ', h('a', { href: APK_RELEASE_URL, rel: 'noopener', target: '_blank' }, 'Or get it from GitHub')),
       ),
       card(
         'ios',
