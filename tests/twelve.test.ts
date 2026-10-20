@@ -3,7 +3,7 @@ import { LEVELS as LV } from '../src/core/types';
 import { densityAnswer, insideRegion, makeDensity, regionArea } from '../src/games/density';
 import { makeArea } from '../src/games/area';
 import { judgeRecall, makeDistractors, makeSequence, nextLength, TRACE } from '../src/games/trace';
-import { deduce, decisive, feasible, makeWeigh, possible, witness, type Scale } from '../src/games/weigh';
+import { beamTilt, deduce, decisive, feasible, makeWeigh, possible, witness, type Scale } from '../src/games/weigh';
 import { gap, makeIntersection, overlapArea, xPenalty, type Sh } from '../src/games/intersection';
 import { makeCount, makeCounts } from '../src/games/count';
 import { BASE, consistent, DOMAIN, greedyDepth, hypPenalty, makeHypothesis } from '../src/games/hypothesis';
@@ -149,6 +149,17 @@ describe('weigh', () => {
         }
       }
     expect(witness([S([0], '>', [1]), S([2], '>', [1])], 3, 0, 2, '<')).not.toBeNull();
+  });
+  it('draws every scale with its heavier pan lower (screen y points down)', () => {
+    for (const lv of LV)
+      for (const seed of [1, 2, 3, 21, 99])
+        for (const rd of makeWeigh(seed, lv))
+          for (const s of rd.scales) {
+            const d = s.L.reduce((a, i) => a + rd.w[i], 0) - s.R.reduce((a, i) => a + rd.w[i], 0);
+            // Left pan's vertical offset: py − sin(tilt)·half → positive means lower on screen.
+            const leftDrop = -Math.sin(beamTilt(s.out));
+            expect(Math.sign(leftDrop)).toBe(Math.sign(d));
+          }
   });
 });
 

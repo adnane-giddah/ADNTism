@@ -184,6 +184,12 @@ export function witness(scales: Scale[], n: number, a: number, b: number, rel: R
   return rec(0) ? [...w] : null;
 }
 
+/**
+ * Beam angle for a reading, in screen space (y points down): the left end sits at py − sin(angle)·half.
+ * The heavier side must dip, so a left-heavy reading ('>') needs a negative angle (left end lower).
+ */
+export const beamTilt = (out: Rel) => (out === '>' ? -0.13 : out === '<' ? 0.13 : 0);
+
 const NAME = 'ABCDE';
 type Ans = Rel | 'unknown';
 const scaleText = (s: Scale) => `${s.L.map((i) => NAME[i]).join('+')} ${s.out} ${s.R.map((i) => NAME[i]).join('+')}`;
@@ -325,7 +331,7 @@ const factory: GameFactory = (api) => {
   };
 
   function drawScale(c: CanvasRenderingContext2D, cx: number, by: number, w: number, s: Scale, k: number) {
-    const tilt = (s.out === '>' ? 1 : s.out === '<' ? -1 : 0) * 0.13 * k;
+    const tilt = beamTilt(s.out) * k;
     const ph = w * 0.42;
     const py = by - ph;
     // Stand: a weighted foot and a post.
