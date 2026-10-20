@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">epsilon</string>
+    <string name="title_activity_main">epsilon</string>
+    <string name="package_name">dz.adnane.epsilon</string>
+    <string name="custom_url_scheme">dz.adnane.epsilon</string>
+</resources>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>epsilon — how close can you get?</title>
+    <meta name="description" content="A laboratory of very small errors. Tiny browser experiments that measure your timing, angles, distances and control — to the millisecond, the tenth of a degree, the pixel." />
+    <meta name="theme-color" content="#0A0A0C" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <!-- iPhone: "Add to Home Screen" opens full screen, offline, like an app. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="epsilon" />
+    <script>
+      // Apply stored theme before first paint (no flash).
+      try {
+        var s = JSON.parse(localStorage.getItem('eps:settings') || '{}');
+        var d = document.documentElement;
+        if (s.theme && s.theme !== 'system') d.dataset.theme = s.theme;
+        if (s.contrast) d.dataset.contrast = '1';
+        if (s.motion === 'reduce') d.dataset.motion = 'reduce';
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <noscript>epsilon is a set of interactive instruments and needs JavaScript.</noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

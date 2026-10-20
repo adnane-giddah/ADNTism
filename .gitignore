@@ -1,0 +1,17 @@
+node_modules
+dist
+*.local
+*.log
+
+# Signing keys never go into the repository (CI reads them from GitHub secrets).
+*.jks
+*.keystore
+keystore-*.txt
+
+# Local working material (prompts, design exports, scratch) — not part of the app.
+*.pdf
+prompt*.txt
+promptttt.txt
+prelab.dart
+fzfz/
+stitch_polished_game_overhaul/
