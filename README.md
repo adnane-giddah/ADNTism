@@ -2,7 +2,7 @@
 
 52 tiny browser games that measure timing, angle, memory, reasoning, perception and control. Every score is a number you can beat. No account, no server, works offline; records never leave your browser.
 
-**Play:** [adnane-giddah.github.io/ADNTism](https://adnane-giddah.github.io/ADNTism/) · **Android app (offline):** [epsilon.apk](https://github.com/adnane-giddah/ADNTism/releases/latest/download/epsilon.apk) · **iPhone:** open the site in Safari → Share → *Add to Home Screen* (works offline).
+**Play:** [adnane-giddah.github.io/ADNTism](https://adnane-giddah.github.io/ADNTism/) · **Android app (offline, landscape, its own interface):** [epsilon.apk](https://github.com/adnane-giddah/ADNTism/releases/latest/download/epsilon.apk) · **iPhone:** open the site in Safari → Share → *Add to Home Screen* (works offline).
 
 ```bash
 npm install

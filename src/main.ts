@@ -81,7 +81,7 @@ document.addEventListener('click', (e) => {
   go(appPath(url.pathname) + url.search + url.hash);
 });
 
-window.addEventListener('popstate', () => void render(true));
+window.addEventListener('popstate', () => !document.documentElement.classList.contains('app') && void render(true));
 history.scrollRestoration = 'manual';
 // GitHub Pages fallback: 404.html stores the deep link it was asked for and loads the app at its root.
 try {
@@ -95,16 +95,13 @@ try {
 }
 document.documentElement.classList.toggle('native', NATIVE);
 document.documentElement.classList.toggle('standalone', STANDALONE || NATIVE);
-void render();
 
-if (NATIVE) {
-  // Android back button: back through the app's pages, leave the app from the home page.
-  void import('@capacitor/app').then(({ App }) =>
-    App.addListener('backButton', () => {
-      if (appPath(location.pathname) !== '/') history.back();
-      else void App.exitApp();
-    }),
-  );
-} else if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+// The phone app has its own interface (src/app): the Android build, home-screen installs on touch devices
+// (iPhone "Add to Home Screen"), and ?app for previewing it in a browser. Everyone else gets the website.
+const APP_MODE = NATIVE || new URLSearchParams(location.search).has('app') || (STANDALONE && matchMedia('(pointer: coarse)').matches);
+if (APP_MODE) void import('./app/app').then((m) => m.start(app));
+else void render();
+
+if (!NATIVE && import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => void navigator.serviceWorker.register(href('/sw.js')).catch(() => {}));
 }

@@ -61,7 +61,11 @@ export class Fx {
   /** Called when the shake offset changes, so the stage can redraw the game canvas. */
   onShake: () => void = () => {};
 
-  constructor(private host: HTMLElement) {
+  /** `scale` gives the stage's logical scale when it differs from the default (e.g. the app's landscape fit). */
+  constructor(
+    private host: HTMLElement,
+    private scale?: () => number,
+  ) {
     this.canvas = document.createElement('canvas');
     this.canvas.className = 'fx-canvas';
     this.canvas.setAttribute('aria-hidden', 'true');
@@ -72,13 +76,18 @@ export class Fx {
     this.fit();
   }
 
+  /** Re-read the host size and scale (after the stage changed its layout scale). */
+  refit() {
+    this.fit();
+  }
+
   private fit() {
     const r = this.host.getBoundingClientRect();
     this.dpr = Math.min(window.devicePixelRatio || 1, 2);
     const cw = Math.max(1, Math.round(r.width));
     const ch = Math.max(1, Math.round(r.height));
     // Same logical units as the stage, so effects land where the game drew things.
-    this.k = stageScale(cw, ch);
+    this.k = this.scale ? this.scale() : stageScale(cw, ch);
     this.w = cw / this.k;
     this.h = ch / this.k;
     this.canvas.width = Math.round(cw * this.dpr);

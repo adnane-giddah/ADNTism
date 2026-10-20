@@ -25,6 +25,8 @@ export class Stage {
   shakeY = 0;
   /** Narrowest logical width a game can lay out in; below it the drawing is scaled down to fit (phones). */
   private minW = 0;
+  /** Shortest logical height (landscape phones are short): below it the drawing is scaled down to fit. */
+  private minH = 0;
   draw: (t: number) => boolean | void = () => false;
   onResize: () => void = () => {};
   private raf = 0;
@@ -59,7 +61,9 @@ export class Stage {
     this.cssW = w;
     this.cssH = h;
     this.dpr = dpr;
-    this.k = this.minW && w < this.minW ? w / this.minW : stageScale(w, h);
+    const kw = this.minW && w < this.minW ? w / this.minW : Infinity;
+    const kh = this.minH && h < this.minH ? h / this.minH : Infinity;
+    this.k = Math.min(kw, kh) < Infinity ? Math.min(kw, kh) : stageScale(w, h);
     // DOM overlays on the stage (prompt, judgements) scale with the drawing.
     this.host.style.setProperty('--stage-k', String(this.k));
     this.w = Math.round(w / this.k);
@@ -74,7 +78,14 @@ export class Stage {
 
   /** Lay out at least `px` logical pixels wide (narrower screens scale the drawing down instead). */
   setMinWidth(px: number) {
-    this.minW = px;
+    this.minW = Math.max(this.minW, px);
+    this.cssW = 0;
+    this.fit();
+  }
+
+  /** Lay out at least `px` logical pixels tall (the app sets this for landscape phones). */
+  setMinHeight(px: number) {
+    this.minH = px;
     this.cssW = 0;
     this.fit();
   }
@@ -86,6 +97,19 @@ export class Stage {
   }
 
   start() {
+    this.live = true;
+    this.request();
+  }
+
+  /** Freeze drawing (and the frame clock that real-time games step from). */
+  pause() {
+    this.live = false;
+    cancelAnimationFrame(this.raf);
+    this.raf = 0;
+  }
+
+  resume() {
+    if (this.live) return;
     this.live = true;
     this.request();
   }
