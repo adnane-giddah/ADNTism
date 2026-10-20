@@ -16,7 +16,7 @@ import * as jnd from '../src/games/jnd';
 import * as regime from '../src/games/regime';
 import * as bif from '../src/games/bifurcation';
 import * as cp from '../src/games/counterpoint';
-import { byId, games } from '../src/games/registry';
+import { byId, games, ORDER } from '../src/games/registry';
 import { previews } from '../src/pages/previews';
 
 const seeds = (n: number, salt = 1) => Array.from({ length: n }, (_, i) => (rng(i * 7919 + salt).next() * 0xffffffff) >>> 0);
@@ -74,16 +74,20 @@ describe('variation scheduler', () => {
 
 describe('registry integration', () => {
   const ids = ['fovea', 'alias', 'lag', 'fold', 'lastlook', 'checksum', 'descent', 'projection', 'jnd', 'regime', 'bifurcation', 'counterpoint'];
-  it('all twelve are registered in order 41–52, with previews, stars and loaders', async () => {
-    ids.forEach((id, i) => {
+  it('all twelve are registered, with previews, stars and loaders', async () => {
+    ids.forEach((id) => {
       const g = byId(id)!;
       expect(g, id).toBeDefined();
-      expect(g.no).toBe(String(41 + i));
       expect(previews[id], id).toBeTypeOf('function');
       expect(g.stars).toBeDefined();
     });
     expect(new Set(games.map((g) => g.id)).size).toBe(games.length);
     for (const id of ids) expect(typeof (await byId(id)!.load()).default).toBe('function');
+  });
+  it('the play order lists every game once, leaders first, numbered 01… in order', () => {
+    expect([...ORDER].sort()).toEqual(games.map((g) => g.id).sort());
+    expect(games.slice(0, 4).map((g) => g.id)).toEqual(['projection', 'fold', 'slipstream', 'pour']);
+    games.forEach((g, i) => expect(g.no).toBe(String(i + 1).padStart(2, '0')));
   });
   it('every game has at least five real variation families', () => {
     for (const fams of [fovea.FAMILIES, alias.FAMILIES, lag.FAMILIES, fold.FAMILIES, look.FAMILIES, cks.FAMILIES, desc.FAMILIES, proj.FAMILIES, jnd.FAMILIES, regime.FAMILIES, bif.FAMILIES, cp.FAMILIES]) {

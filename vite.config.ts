@@ -32,5 +32,7 @@ export default defineConfig({
   test: {
     environment: 'happy-dom',
     include: ['tests/**/*.test.ts'],
+    // Several suites sweep thousands of generated puzzles; under a parallel run they can exceed 5 s.
+    testTimeout: 30000,
   },
 });

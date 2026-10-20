@@ -11,6 +11,8 @@
 
 ---
 
+> **Numbering.** Games are listed and numbered on the site in play order (registry `ORDER`: Projection, Fold, Slipstream and Pour first). The section numbers below are the original catalogue numbers, kept so older notes still match; records are keyed by id and unaffected.
+
 ## Shared rules (apply to every game)
 
 | Concept | Meaning |

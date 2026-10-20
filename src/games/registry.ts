@@ -1494,6 +1494,26 @@ for (const g of games) {
   }
 }
 
+/**
+ * Play order on the site (and the catalogue numbers that follow it): the most addictive first — Projection,
+ * Fold, Slipstream, Pour lead — then the rest by a blend of how compelling, how useful (what it trains) and
+ * how quick to grasp each game is. Records are keyed by id, so renumbering never touches saved data.
+ */
+export const ORDER = [
+  'projection', 'fold', 'slipstream', 'pour',
+  'pendulum', 'brake', 'letterfall', 'zero', 'exact', 'rules', 'fpath', 'lag', 'fovea', 'checksum',
+  'counterpoint', 'bifurcation', 'stop', 'draw', 'echo', 'shadow', 'intercept', 'rotate', 'hypothesis',
+  'lastlook', 'descent', 'alias', 'regime', 'valves', 'vessels', 'loop', 'center', 'mirror', 'perception',
+  'phase', 'beat', 'intersect', 'drift', 'balance', 'plumb', 'trace', 'count', 'quantity', 'density', 'area',
+  'length', 'intersection', 'weigh', 'diff', 'verbatim', 'afterimage', 'filter', 'jnd',
+];
+games.sort((a, b) => {
+  const ia = ORDER.indexOf(a.id);
+  const ib = ORDER.indexOf(b.id);
+  return (ia < 0 ? 1e3 : ia) - (ib < 0 ? 1e3 : ib);
+});
+games.forEach((g, i) => (g.no = String(i + 1).padStart(2, '0')));
+
 export const byId = (id: string) => games.find((g) => g.id === id);
 
 // Records keep each game's best in its own direction (Slipstream's distance is higher-is-better).
