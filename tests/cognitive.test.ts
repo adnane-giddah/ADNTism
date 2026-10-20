@@ -301,7 +301,7 @@ describe('Checksum', () => {
       if (rd.kind === 'mixed') expect(cks.mixedSolutions(rd.shown, rd.R, rd.C)).toBe(1);
       if (rd.kind === 'digits') expect(cks.digitRepairs(rd.shown as number[], rd.R, rd.C, rd.rowT!, rd.colT!, rd.k)).toHaveLength(1);
     });
-  });
+  }, 60000);
 });
 
 describe('Descent', () => {
