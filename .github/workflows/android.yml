@@ -19,12 +19,12 @@ jobs:
   apk:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 21
@@ -48,7 +48,16 @@ jobs:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         run: |
           chmod +x gradlew
-          ./gradlew assembleRelease --no-daemon -PversionCode=${{ github.run_number }} -PversionName=1.0.${{ github.run_number }}
+          set +e
+          ./gradlew assembleRelease --no-daemon -PversionCode=${{ github.run_number }} -PversionName=1.0.${{ github.run_number }} 2>&1 | tee gradle.log
+          status=${PIPESTATUS[0]}
+          set -e
+          if [ "$status" -ne 0 ]; then
+            # Surface Gradle's own explanation as a visible annotation.
+            msg=$(grep -A25 "What went wrong" gradle.log | head -40 | sed -e 's/%/%25/g' | sed -e ':a;N;$!ba;s/\n/%0A/g')
+            echo "::error title=Gradle build failed::${msg:-see the log}"
+            exit "$status"
+          fi
           cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/epsilon.apk"
       - uses: actions/upload-artifact@v4
         with:

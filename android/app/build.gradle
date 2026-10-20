@@ -34,7 +34,8 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig (ks && file(ks).exists()) ? signingConfigs.release : signingConfigs.debug
+            // Assignment, not `signingConfig (…) ? … : …` — Groovy would call signingConfig(boolean) there.
+            signingConfig = (ks && file(ks).exists()) ? signingConfigs.release : signingConfigs.debug
         }
     }
 }
