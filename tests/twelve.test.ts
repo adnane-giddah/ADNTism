@@ -158,7 +158,7 @@ describe('weigh', () => {
             const d = s.L.reduce((a, i) => a + rd.w[i], 0) - s.R.reduce((a, i) => a + rd.w[i], 0);
             // Left pan's vertical offset: py − sin(tilt)·half → positive means lower on screen.
             const leftDrop = -Math.sin(beamTilt(s.out));
-            expect(Math.sign(leftDrop)).toBe(Math.sign(d));
+            expect(Math.sign(leftDrop) || 0).toBe(Math.sign(d) || 0);
           }
   });
 });
