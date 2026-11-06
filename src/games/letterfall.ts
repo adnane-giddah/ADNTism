@@ -406,7 +406,7 @@ const factory: GameFactory = (api) => {
       // The pressed lane lights up: a beam rising from the line.
       if (age < 260) {
         const bg = c.createLinearGradient(0, g.lineY, 0, g.top);
-        const col = f.err == null ? pal.ink3 : Math.abs(f.err) <= 30 ? pal.accent : '#FFB834';
+        const col = f.err == null ? pal.ink3 : Math.abs(f.err) <= 30 ? pal.accent : pal.amber;
         bg.addColorStop(0, alpha(col, 0.32 * (1 - age / 260)));
         bg.addColorStop(1, alpha(col, 0));
         c.fillStyle = bg;

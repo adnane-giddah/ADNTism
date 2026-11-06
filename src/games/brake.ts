@@ -431,7 +431,7 @@ const factory: GameFactory = (api) => {
     softShadow(c, gx, gy + 2, 14, 4);
     if (braking && phase === 'run') {
       glow(c, gx, gy - 6, 32, pal.signal, 0.8);
-      if (s.v > 2) api.fx.spray(gx - 10 * Math.cos(ang), gy - 10 * Math.sin(ang), Math.PI + ang + 0.3, 0.5, Math.random() < 0.5 ? '#FFB834' : pal.signal, 2, 60 + s.v * 3, 1.5);
+      if (s.v > 2) api.fx.spray(gx - 10 * Math.cos(ang), gy - 10 * Math.sin(ang), Math.PI + ang + 0.3, 0.5, Math.random() < 0.5 ? pal.amber : pal.signal, 2, 60 + s.v * 3, 1.5);
     }
     c.save();
     c.translate(gx, gy);
@@ -471,7 +471,7 @@ const factory: GameFactory = (api) => {
       c.fill();
       const hg = c.createLinearGradient(hx, 0, hx + 140, 0);
       hg.addColorStop(0, pal.accent);
-      hg.addColorStop(0.5, '#FFB834');
+      hg.addColorStop(0.5, pal.amber);
       hg.addColorStop(1, pal.signal);
       c.save();
       rr(c, hx, 98, Math.max(4, 140 * s.heat), 8, 4);

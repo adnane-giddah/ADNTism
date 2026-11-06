@@ -11,9 +11,9 @@ type C = CanvasRenderingContext2D;
 export type Pt = { x: number; y: number };
 
 /** Intermediate states (neither the target cyan nor the error coral). */
-export const AMBER = '#F2B84B';
-export const VIOLET = '#A88BFF';
-export const BLUE = '#6FA8FF';
+export const AMBER = '#FFE07A';
+export const VIOLET = '#B794FF';
+export const BLUE = '#FFFFFF';
 
 interface Btn {
   x: number;

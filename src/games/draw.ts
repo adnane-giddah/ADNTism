@@ -409,7 +409,7 @@ const factory: GameFactory = (api) => {
         const [t1, t2] = st ? [st[2] * 1.5, st[0] * 1.5] : [maxE * 0.33, maxE * 0.66];
         for (let i = 1; i < pts.length; i++) {
           const e = Math.abs(metrics.samples[i - 1]?.e ?? 0);
-          c.strokeStyle = e < t1 ? pal.accent : e < t2 ? '#FFB834' : pal.signal;
+          c.strokeStyle = e < t1 ? pal.accent : e < t2 ? pal.amber : pal.signal;
           c.lineWidth = 3;
           c.beginPath();
           c.moveTo(X(pts[i - 1].x), Y(pts[i - 1].y));
@@ -437,7 +437,7 @@ const factory: GameFactory = (api) => {
         // Mirror hand: where your hand really is, and the mirror line between it and the pen.
         if (api.mode === 'mirror' && hand) {
           circle(c, X(hand.x), Y(hand.y), 6, alpha(pal.ink, 0.35), undefined, 1.25, [2, 2]);
-          hair(c, X(shape.x), Y(shape.y) - 60 * k, X(shape.x), Y(shape.y) + 60 * k, alpha('#FFB834', 0.35), [4, 6]);
+          hair(c, X(shape.x), Y(shape.y) - 60 * k, X(shape.x), Y(shape.y) + 60 * k, alpha(pal.amber, 0.35), [4, 6]);
         }
       }
     }

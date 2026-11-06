@@ -426,7 +426,7 @@ const factory: GameFactory = (api) => {
         // Bracket marks over the covered positions.
         const yy = y0 - 18 - gi * 12;
         for (let p = 1; p <= n; p++) if (p & g) {
-          c.fillStyle = alpha([pal.accent, AMBER, '#A88BFF', '#6FA8FF'][gi], 0.75);
+          c.fillStyle = alpha([pal.accent, AMBER, '#B794FF', '#E9DDFF'][gi], 0.75);
           c.fillRect(x0 + (p - 1) * cw + 4, yy, cw - 8, 4);
         }
       });
@@ -449,7 +449,7 @@ const factory: GameFactory = (api) => {
         const ok = groupOK(cur as number[], g);
         const lab = `check ${g}: ${isRead ? (ok ? 'pass ✓' : 'FAIL ✗') : 'read'}`;
         const gw = Math.min(128, (W - 24) / groups.length);
-        bench.button(c, W / 2 - (groups.length * gw) / 2 + gi * gw, by, gw - 8, 38, lab, () => read.add('g' + g), { off: reveal, sel: isRead, color: isRead ? (ok ? pal.accent : pal.signal) : [pal.accent, AMBER, '#A88BFF', '#6FA8FF'][gi], px: 11 });
+        bench.button(c, W / 2 - (groups.length * gw) / 2 + gi * gw, by, gw - 8, 38, lab, () => read.add('g' + g), { off: reveal, sel: isRead, color: isRead ? (ok ? pal.accent : pal.signal) : [pal.accent, AMBER, '#B794FF', '#E9DDFF'][gi], px: 11 });
       });
       if (!reveal) bench.button(c, W / 2 - 80, by + 54, 160, 40, 'Verify', verify, { primary: true, key: 'Enter' });
       roundStrip(c, W, H - 6, sess.marks(), ROUNDS, sess.round);

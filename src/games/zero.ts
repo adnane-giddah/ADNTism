@@ -257,9 +257,9 @@ const factory: GameFactory = (api) => {
 
     // Apparatus header: index, stroke vector, cycle stage dots.
     const hy = top - 58;
-    text(c, 'APPARATUS: ', laneL - chipW - 8, hy, font.mono(11, 400), pal.ink3, 'left', 'middle');
+    text(c, 'Signs: ', laneL - chipW - 8, hy, font.mono(11, 400), pal.ink3, 'left', 'middle');
     c.font = font.mono(11, 400);
-    const aw = c.measureText('APPARATUS: ').width;
+    const aw = c.measureText('Signs: ').width;
     text(c, 'CALIBRATED QUARTZ GAUGE', laneL - chipW - 8 + aw, hy, font.mono(11, 600), pal.ink, 'left', 'middle');
     const iNow = Math.min(strokes.length, rows - 1);
     if (!done) {
@@ -382,7 +382,7 @@ const factory: GameFactory = (api) => {
       } else if (i === strokes.length && holding) {
         // Measuring blind: a glow that shimmers without any countable rhythm (it must not become a clock).
         const sh = 0.6 + 0.4 * Math.random();
-        if (decoy() && now - decoyFlash < 180) glow(c, X(a), y + bh / 2, bh * 3.2, '#FFB834', 1 - (now - decoyFlash) / 180);
+        if (decoy() && now - decoyFlash < 180) glow(c, X(a), y + bh / 2, bh * 3.2, pal.amber, 1 - (now - decoyFlash) / 180);
         glow(c, X(a), y + bh / 2, bh * 1.9, pal.accent, 0.7 * sh);
         c.fillStyle = pal.accent;
         c.fillRect(X(a) - 1.5, y - 5, 3, bh + 10);

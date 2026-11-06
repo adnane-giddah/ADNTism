@@ -14,7 +14,7 @@ export function frame(cls: string, ...children: Child[]) {
   return h('div', { class: `a-frame ${cls}` }, h('i', { class: 'rt tl' }), h('i', { class: 'rt tr' }), h('i', { class: 'rt bl' }), h('i', { class: 'rt br' }), ...(children.filter(Boolean) as Node[]));
 }
 
-/** Micro label: uppercase JetBrains Mono, wide tracking. */
+/** Small label in the shared typeface. */
 export const label = (s: string, tone = '') => h('span', { class: `a-label ${tone}` }, s);
 
 export function btn(textOrNode: string, run: () => void, o: { kind?: 'primary' | 'ghost' | 'coral' | 'gold'; icon?: string; kbd?: string; cls?: string; disabled?: boolean } = {}) {
@@ -72,7 +72,7 @@ export function sparkline(cv: HTMLCanvasElement, g: GameMeta, rid: string) {
   c.stroke();
   c.setLineDash([]);
   if (data.length < 2) {
-    text(c, data.length ? 'ONE RANKED RUN SO FAR' : 'NO RANKED RUNS YET', 6, H / 2 - 6, font.mono(9, 600), pal.ink3);
+    text(c, data.length ? 'One ranked run so far' : 'No ranked runs yet', 6, H / 2 - 6, font.mono(9, 600), pal.ink3);
     return;
   }
   const useLog = g.better === 'lower' && data.every((v) => v > 0);
@@ -90,8 +90,8 @@ export function sparkline(cv: HTMLCanvasElement, g: GameMeta, rid: string) {
   };
   const x = (i: number) => (i / (data.length - 1)) * (W - 8) + 4;
   const grad = c.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, 'rgba(45,212,191,0.28)');
-  grad.addColorStop(1, 'rgba(45,212,191,0)');
+  grad.addColorStop(0, 'rgba(255,201,41,0.28)');
+  grad.addColorStop(1, 'rgba(255,201,41,0)');
   c.beginPath();
   data.forEach((v, i) => (i ? c.lineTo(x(i), y(v)) : c.moveTo(x(i), y(v))));
   c.lineTo(x(data.length - 1), H);

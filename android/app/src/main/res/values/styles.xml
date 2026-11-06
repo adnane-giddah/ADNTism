@@ -16,7 +16,10 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@color/epsilon_floor</item>
     </style>
-    <color name="epsilon_floor">#0A0D0E</color>
+    <color name="epsilon_floor">#3A157E</color>
+    <color name="colorPrimary">#7851A9</color>
+    <color name="colorPrimaryDark">#2A0D60</color>
+    <color name="colorAccent">#FFC929</color>
 
 
     <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">

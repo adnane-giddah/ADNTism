@@ -1,7 +1,7 @@
 ﻿/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    NEOCLASSICAL PRECISION LAB â€” the design layer.
-   Obsidian planes, hairline borders, reticle brackets, Playfair headlines with
-   italic accents, JetBrains Mono telemetry. Cyan = precision, coral = error.
+   Royal purple planes, hairline borders, reticle brackets, Playfair headlines with
+   italic accents, JetBrains Mono telemetry. Yellow = precision, orchid = error.
    Loaded after styles.css; it re-skins every page and every experiment bench.
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
@@ -13,16 +13,16 @@ html {
 body {
   background:
     radial-gradient(900px 480px at 78% -8%, var(--accent-soft), transparent 70%),
-    radial-gradient(700px 420px at -6% 4%, rgba(255, 184, 52, 0.04), transparent 70%),
+    radial-gradient(700px 420px at -6% 4%, rgba(124, 58, 237, 0.22), transparent 70%),
     var(--paper);
   background-attachment: fixed;
 }
 :root[data-theme='light'] body {
-  background: radial-gradient(900px 480px at 78% -8%, rgba(10, 143, 132, 0.07), transparent 70%), var(--paper);
+  background: radial-gradient(900px 480px at 78% -8%, rgba(91, 33, 182, 0.06), transparent 70%), var(--paper);
 }
 ::selection {
   background: var(--accent);
-  color: #04100f;
+  color: var(--on-ink);
 }
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -36,7 +36,7 @@ em {
 .cap {
   font-size: 10.5px;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
 }
 kbd {
   padding: 2px 6px 2px;
@@ -45,7 +45,7 @@ kbd {
   background: var(--line-2);
   font-size: 9.5px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   opacity: 1;
 }
 .live-dot {
@@ -72,7 +72,7 @@ kbd {
   min-height: 44px;
   padding: 0 18px;
   font: 500 11.5px/1 var(--mono);
-  letter-spacing: 0.1em;
+  letter-spacing: 0;
   transition:
     background 0.18s,
     color 0.18s,
@@ -131,12 +131,12 @@ kbd {
   height: 38px;
   border-radius: 10px;
   background: #000;
-  color: #ffd60a;
-  font: italic 500 30px/1 var(--serif);
+  color: #ffc929;
+  font: 800 30px/1 var(--serif);
   padding-bottom: 4px;
   transform: none;
   text-shadow: none;
-  box-shadow: 0 0 0 1px rgba(255, 214, 10, 0.22), 0 6px 18px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 1px rgba(255, 201, 41, 0.22), 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 .word-stack {
   display: flex;
@@ -148,8 +148,8 @@ kbd {
   align-items: center;
   gap: 10px;
   font: 600 14px/1 var(--mono);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
 }
 .lab-badge {
   padding: 3px 6px 2px;
@@ -157,14 +157,14 @@ kbd {
   border-radius: 4px;
   background: var(--paper-3);
   font: 600 9px/1 var(--mono);
-  letter-spacing: 0.14em;
+  letter-spacing: 0;
   color: var(--ink-2);
 }
 .mark .def {
   margin: 0;
   font: 500 9.5px/1 var(--mono);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--ink-3);
 }
 .site-status {
@@ -187,7 +187,7 @@ kbd {
   padding: 10px 14px;
   border-radius: 8px;
   font: 500 11px/1 var(--mono);
-  letter-spacing: 0.1em;
+  letter-spacing: 0;
   transition:
     color 0.15s,
     background 0.15s,
@@ -251,7 +251,7 @@ kbd {
   align-items: center;
 }
 .hero h1 {
-  font: 400 clamp(52px, 8.6vw, 140px) / 0.96 var(--serif);
+  font: 720 clamp(52px, 8.6vw, 140px) / 0.96 var(--serif);
   letter-spacing: -0.035em;
 }
 .hero h1 em {
@@ -324,11 +324,11 @@ kbd {
   background: linear-gradient(90deg, var(--accent-soft), transparent 55%);
 }
 .band .what .nm {
-  font: italic 400 34px/1 var(--serif);
+  font: 720 34px/1 var(--serif);
 }
 
 .index-head h2 {
-  font: 400 clamp(38px, 4.6vw, 60px) / 1 var(--serif);
+  font: 720 clamp(38px, 4.6vw, 60px) / 1 var(--serif);
 }
 .index-head h2 em {
   letter-spacing: -0.02em;
@@ -349,13 +349,13 @@ kbd {
   color: var(--ink);
 }
 .chip[aria-pressed='true'] {
-  background: rgba(244, 240, 232, 0.08);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
   border-color: var(--line);
   color: var(--ink);
   box-shadow: 0 0 18px -6px var(--accent-glow);
 }
 :root[data-theme='light'] .chip[aria-pressed='true'] {
-  background: rgba(21, 22, 26, 0.07);
+  background: rgba(91, 33, 182, 0.08);
 }
 .chip .n {
   padding: 2px 5px 1px;
@@ -431,7 +431,7 @@ kbd {
     var(--paper);
 }
 .spec h3 {
-  font: 400 32px/1.05 var(--serif);
+  font: 720 32px/1.05 var(--serif);
   letter-spacing: -0.015em;
 }
 .spec-go {
@@ -465,7 +465,7 @@ kbd {
   line-height: 1.6;
 }
 .site-foot .defn i {
-  font: italic 400 30px/1 var(--serif);
+  font: 720 30px/1 var(--serif);
   color: var(--accent);
 }
 .foot-tele {
@@ -505,7 +505,7 @@ kbd {
   border-bottom-color: var(--line-2);
 }
 .page-head h1 {
-  font: 400 clamp(46px, 7vw, 104px) / 0.96 var(--serif);
+  font: 720 clamp(46px, 7vw, 104px) / 0.96 var(--serif);
   letter-spacing: -0.03em;
 }
 .prose h2,
@@ -550,7 +550,7 @@ kbd {
   border-bottom-color: var(--line-2);
 }
 .rec-table td.nm a {
-  font: italic 400 26px/1 var(--serif);
+  font: 720 26px/1 var(--serif);
 }
 .prof-row small.up {
   color: var(--accent);
@@ -611,10 +611,10 @@ kbd {
   color: var(--accent);
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0;
 }
 .xp-title .nm {
-  font: italic 400 32px/1 var(--serif);
+  font: 720 32px/1 var(--serif);
   letter-spacing: -0.02em;
 }
 .xp-tag {
@@ -646,7 +646,7 @@ kbd {
 .xp .lvl-btn {
   border-radius: 7px;
   font: 500 10.5px/1 var(--mono);
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
   color: var(--ink-3);
 }
 .xp .lvl-btn:hover:not(:disabled) {
@@ -679,7 +679,7 @@ kbd {
   border-color: var(--line-2);
   background: var(--paper-2);
   font-size: 11px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0;
 }
 .pips i {
   height: 4px;
@@ -720,7 +720,7 @@ kbd {
 .xp .xp-stage {
   --bk: color-mix(in srgb, var(--ink) 38%, transparent);
   --bm: 16px;
-  --grid: rgba(244, 240, 232, 0.028);
+  --grid: rgba(216, 204, 242, 0.035);
   border: 1px solid var(--line-2);
   border-radius: 6px;
   background:
@@ -769,8 +769,8 @@ kbd {
   align-items: center;
   gap: 8px;
   font: 500 9.5px/1 var(--mono);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--ink-3);
 }
 .stage-tag.tl {
@@ -813,7 +813,7 @@ kbd {
   padding: 12px 14px;
   border: 1px solid var(--line-2);
   border-radius: 6px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0;
   color: var(--ink-2);
 }
 .xp-actions .seed-btn:hover {
@@ -824,7 +824,7 @@ kbd {
 .act-keys {
   margin-left: auto;
   text-transform: none;
-  letter-spacing: 0.06em;
+  letter-spacing: 0;
 }
 
 /* Verdict chip over the HUD */
@@ -891,12 +891,12 @@ kbd {
   background: var(--accent-soft);
   color: var(--accent);
   font: 600 9px/1 var(--mono);
-  letter-spacing: 0.14em;
+  letter-spacing: 0;
   box-shadow: 0 0 14px -4px var(--accent-glow);
 }
 .deck-title {
   margin: 8px 0 0;
-  font: 400 clamp(30px, 2.6vw, 38px) / 1.05 var(--serif);
+  font: 720 clamp(30px, 2.6vw, 38px) / 1.05 var(--serif);
   letter-spacing: -0.02em;
 }
 .deck-title em {
@@ -944,7 +944,7 @@ kbd {
   background: transparent;
   color: var(--ink-2);
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0;
 }
 .xp .badge.signal {
   border-color: var(--accent);
@@ -986,8 +986,8 @@ kbd {
 }
 .xp .ro .v small {
   font: 500 10px/1 var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--accent);
   margin-left: 4px;
 }
@@ -1015,7 +1015,7 @@ kbd {
 }
 .help-pop h4,
 .tut-card h3 {
-  font: italic 400 32px/1.05 var(--serif);
+  font: 720 32px/1.05 var(--serif);
 }
 .tutorial {
   background: color-mix(in srgb, var(--paper) 78%, transparent);
@@ -1034,7 +1034,7 @@ kbd {
 .xp .judge-word {
   border-radius: 4px;
   background: var(--paper);
-  letter-spacing: 0.14em;
+  letter-spacing: 0;
 }
 .judge[data-tier='exact'] .judge-word,
 .judge[data-tier='excellent'] .judge-word {

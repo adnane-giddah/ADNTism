@@ -36,8 +36,8 @@ export interface FluidSpec {
 }
 
 export const FLUIDS: Record<Fluid, FluidSpec> = {
-  xenon: { name: 'Liquid xenon', ramp: 0.03, drip: 0.04, visc: '0.052 mPa·s', angle: '14.2° concave', menisc: -1, top: '#48f8e6', deep: '#005b53' },
-  water: { name: 'Heavy water · D₂O', ramp: 0.12, drip: 0.12, visc: '1.248 mPa·s', angle: '0.0° flat', menisc: 0, top: '#8fd3ff', deep: '#123f73' },
+  xenon: { name: 'Liquid xenon', ramp: 0.03, drip: 0.04, visc: '0.052 mPa·s', angle: '14.2° concave', menisc: -1, top: '#ffd84d', deep: '#7a4f00' },
+  water: { name: 'Heavy water · D₂O', ramp: 0.12, drip: 0.12, visc: '1.248 mPa·s', angle: '0.0° flat', menisc: 0, top: '#d9c4ff', deep: '#3d1585' },
   mercury: { name: 'Mercury', ramp: 0.32, drip: 0.26, visc: '1.526 mPa·s', angle: '137.5° convex', menisc: 1, top: '#f2f3f7', deep: '#4b4f5a' },
 };
 /** Seconds a drop takes from the nozzle to the surface. */
@@ -407,7 +407,7 @@ const factory: GameFactory = (api) => {
 
     // The glass: a smoked interior, so the empty part of the vessel reads as glass, not as a drawing.
     trace(0, TANK_H);
-    c.fillStyle = 'rgba(28,27,29,0.45)';
+    c.fillStyle = 'rgba(18,6,42,0.45)';
     c.fill();
 
     // Height graduations etched on the left wall — heights, deliberately: they are what deceives you.
@@ -729,7 +729,7 @@ const factory: GameFactory = (api) => {
           : overflow
             ? 'OVERFLOW'
             : 'MENISCUS SETTLED · MEASURED';
-    text(c, status, cx, Yb(0) + 30, font.mono(10, 600), open ? f.top : phase === 'settle' || settling ? '#FFB834' : pal.ink3, 'center');
+    text(c, status, cx, Yb(0) + 30, font.mono(10, 600), open ? f.top : phase === 'settle' || settling ? pal.amber : pal.ink3, 'center');
     if (phase === 'fill') {
       const finite = r.pours !== Infinity;
       const left = finite ? Math.max(0, r.pours - pours.length) : Infinity;

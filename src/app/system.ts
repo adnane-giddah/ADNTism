@@ -14,7 +14,7 @@ export function systemScreen(_nav: Nav): Screen {
     const b = h('button', { type: 'button', class: 'y-toggle', role: 'switch' });
     const paint = () => {
       b.setAttribute('aria-checked', String(get()));
-      b.replaceChildren(h('i'), h('span', null, get() ? 'ON' : 'OFF'));
+      b.replaceChildren(h('i'), h('span', null, get() ? 'ON' : 'Off'));
     };
     b.addEventListener('click', () => {
       set(!get());
@@ -53,22 +53,22 @@ export function systemScreen(_nav: Nav): Screen {
     toggle('No flashes', 'No screen inversion on an EXACT; beat lamps glow instead of flashing.', () => settings.noFlash, (v) => setSetting('noFlash', v)),
     toggle('Reduce motion', 'Calmer animations and effects.', () => settings.motion === 'reduce', (v) => setSetting('motion', v ? 'reduce' : 'system')),
     choice('Text size', 'Interface and in-game text.', 'textSize', [
-      ['normal', 'NORMAL'],
-      ['large', 'LARGE'],
+      ['normal', 'Normal'],
+      ['large', 'Large'],
     ]),
     choice('Touch targets', 'Bigger knobs and hit zones (never changes a score).', 'targets', [
-      ['normal', 'NORMAL'],
-      ['large', 'LARGE'],
+      ['normal', 'Normal'],
+      ['large', 'Large'],
     ]),
   );
 
   const el = h(
     'div',
     { class: 'a-screen a-system' },
-    h('header', { class: 'a-strip' }, h('span', { class: 'a-label teal' }, h('i', { class: 'a-sq' }), 'SYSTEM // CONFIGURATION'), h('span', { class: 'a-badge' }, `${games.length} PROTOCOLS INSTALLED`)),
-    h('h1', null, h('em', null, 'System')),
+    h('header', { class: 'a-strip' }, h('span', { class: 'a-badge' }, `${games.length} experiments`)),
+    h('h1', null, h('em', null, 'Settings')),
     body,
-    frame('y-about', label('LOCAL APPARATUS RUNTIME', 'teal'), h('p', null, 'No remote servers. Every experiment, timing and record runs and stays on this device, with no connection needed.'), h('p', { class: 'a-note' }, `Website: ${SITE.replace('https://', '')}`)),
+    frame('y-about', label('Made by ADN', 'teal'), h('p', null, 'No remote servers. Every experiment, timing and record runs and stays on this device, with no connection needed.'), h('p', { class: 'a-note' }, `Website: ${SITE.replace('https://', '')}`)),
   );
   return { el, tab: 'system' };
 }

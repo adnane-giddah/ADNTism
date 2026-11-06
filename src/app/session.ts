@@ -144,19 +144,19 @@ export async function sessionScreen(nav: Nav, setup: Setup): Promise<Screen> {
   pauseLayer.append(
     frame(
       's-pause-card',
-      label(`PROTOCOL PAUSED // EXP ${g.no}`, 'teal'),
+      label('Paused', 'teal'),
       h('h2', null, h('em', null, g.name)),
       h('p', null, `${levelLabel[level]} · ${kind() === 'ranked' ? 'Ranked' : kind() === 'daily' ? 'Daily' : 'Practice'} · seed ${seedToString(seed)}`),
       h(
         'div',
         { class: 's-actions' },
-        btn('RESUME', resume, { kind: 'primary', icon: icons.play }),
-        btn('RESTART', () => {
+        btn('Resume', resume, { kind: 'primary', icon: icons.play }),
+        btn('Restart', () => {
           resume();
           restart();
         }, { icon: icons.again }),
-        btn('BRIEFING', () => nav.back()),
-        btn('LAB', () => nav.lab()),
+        btn('Briefing', () => nav.back()),
+        btn('Lab', () => nav.lab()),
       ),
     ),
   );
@@ -210,11 +210,11 @@ export async function sessionScreen(nav: Nav, setup: Setup): Promise<Screen> {
 
     const spark = h('canvas', { class: 'a-spark' });
     const tags = [
-      r.perfect ? h('span', { class: 'a-badge gold' }, 'EXACT') : null,
-      isBest && !first && ranked ? h('span', { class: 'a-badge teal' }, 'NEW BEST') : null,
-      ranked && starsFor(g, level, nowBest) > starsBefore ? h('span', { class: 'a-badge gold' }, 'NEW ★') : null,
-      !unlockedBefore && hardUnlocked(g) ? h('span', { class: 'a-badge coral' }, 'HARD UNLOCKED') : null,
-      h('span', { class: 'a-badge' }, `${levelLabel[level].toUpperCase()} · ${k === 'ranked' ? 'RANKED' : k === 'daily' ? 'DAILY' : 'PRACTICE'}`),
+      r.perfect ? h('span', { class: 'a-badge gold' }, 'Exact') : null,
+      isBest && !first && ranked ? h('span', { class: 'a-badge teal' }, 'New best') : null,
+      ranked && starsFor(g, level, nowBest) > starsBefore ? h('span', { class: 'a-badge gold' }, 'New ★') : null,
+      !unlockedBefore && hardUnlocked(g) ? h('span', { class: 'a-badge coral' }, 'Hard unlocked') : null,
+      h('span', { class: 'a-badge' }, `${levelLabel[level]} · ${k === 'ranked' ? 'Ranked' : k === 'daily' ? 'Daily' : 'Practice'}`),
     ];
     debrief.replaceChildren(
       frame(
@@ -222,9 +222,9 @@ export async function sessionScreen(nav: Nav, setup: Setup): Promise<Screen> {
         h(
           'div',
           { class: 's-deb-l' },
-          label(`PROTOCOL // DEBRIEF · EXP ${g.no}`, 'teal'),
+          label('Result', 'teal'),
           h('div', { class: 's-deb-score', 'data-outcome': outcome }, h('b', null, r.value), h('small', null, r.unit)),
-          label(r.label.toUpperCase()),
+          label(r.label),
           g.stars ? h('div', { class: 's-deb-stars', 'aria-label': `${runStars} of 3 stars` }, starString(runStars)) : null,
           h('p', { class: 's-deb-line' }, r.headline),
           h('div', { class: 'a-row a-wrap' }, ...tags.filter(Boolean)),
@@ -234,14 +234,14 @@ export async function sessionScreen(nav: Nav, setup: Setup): Promise<Screen> {
           'div',
           { class: 's-deb-r' },
           h('dl', { class: 's-rows' }, ...r.rows.slice(0, 14).flatMap(([a, b]) => [h('dt', null, a), h('dd', null, b)])),
-          h('div', { class: 'a-spark-wrap' }, label(`TRAJECTORY · BEST ${nowBest == null ? '—' : `${fmtScore(g, nowBest)} ${g.unit}`}`), spark),
+          h('div', { class: 'a-spark-wrap' }, label(`Your runs · best ${nowBest == null ? '—' : `${fmtScore(g, nowBest)} ${g.unit}`}`), spark),
           h(
             'div',
             { class: 's-actions' },
-            btn('AGAIN', again, { kind: 'primary', icon: icons.again }),
-            ...(r.actions ?? []).map((a) => btn(a.label.toUpperCase(), a.run)),
-            btn('BRIEFING', () => nav.back()),
-            btn('LAB', () => nav.lab()),
+            btn('Again', again, { kind: 'primary', icon: icons.again }),
+            ...(r.actions ?? []).map((a) => btn(a.label, a.run)),
+            btn('Briefing', () => nav.back()),
+            btn('Lab', () => nav.lab()),
           ),
         ),
       ),

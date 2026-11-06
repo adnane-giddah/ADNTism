@@ -1123,7 +1123,7 @@ const fovea: Preview = (c, w, h, t) => {
     const x = 14 + u * (w - 28);
     const y = 14 + v * (h - 28);
     const near = Math.hypot(x - lx, y - ly) < L;
-    if (!near) circle(c, x, y, 6, undefined, 'rgba(244,240,232,.18)');
+    if (!near) circle(c, x, y, 6, undefined, 'rgba(255,255,255,.18)');
     else {
       c.beginPath();
       c.arc(x, y, 6, (g * Math.PI) / 4 + 0.45, (g * Math.PI) / 4 - 0.45 + TAU);
@@ -1155,7 +1155,7 @@ const aliasP: Preview = (c, w, h, t) => {
     c.stroke();
   };
   const p = ph(t, 6);
-  if (p > 0.15) wave(f2, 'rgba(244,240,232,.3)', 1);
+  if (p > 0.15) wave(f2, 'rgba(255,255,255,.3)', 1);
   wave(f1, pal.ink2, 1.5);
   for (let k = 0; k <= 8; k++) circle(c, X(k / fs), y0 - A * Math.sin(TAU * f1 * (k / fs) + 0.6), 3.5, undefined, pal.accent);
   text(c, 'same dots, two waves', w / 2, h - 6, font.mono(10, 500), pal.ink3, 'center');
@@ -1170,15 +1170,15 @@ const lagP: Preview = (c, w, h, t) => {
   line(c, 16, h * 0.4, w - 16, h * 0.4, pal.line, 1);
   circle(c, x, h * 0.4, 7, undefined, pal.accent);
   const ty = h * 0.72;
-  c.fillStyle = 'rgba(244,240,232,.08)';
+  c.fillStyle = 'rgba(255,255,255,.08)';
   c.fillRect(20, ty - 8, w - 40, 16);
   for (let i = 0; i < 20; i++) {
     const v = Math.sin((p - 0.15 + (i / 20) * 0.15) * TAU) > 0 ? 1 : -1;
-    c.fillStyle = 'rgba(242,184,75,.6)';
+    c.fillStyle = 'rgba(183,148,255,.6)';
     c.fillRect(30 + (i * (w - 60)) / 20, v > 0 ? ty - 6 : ty, (w - 60) / 22, 6);
   }
-  circle(c, 20, ty, 6, undefined, late > 0 ? '#F2B84B' : 'rgba(242,184,75,.4)');
-  circle(c, w - 20, ty, 6, undefined, cmd > 0 ? pal.accent : 'rgba(46,233,215,.4)');
+  circle(c, 20, ty, 6, undefined, late > 0 ? pal.amber : 'rgba(255,224,122,.4)');
+  circle(c, w - 20, ty, 6, undefined, cmd > 0 ? pal.accent : 'rgba(255,201,41,.4)');
 };
 
 const foldP: Preview = (c, w, h, t) => {
@@ -1188,9 +1188,9 @@ const foldP: Preview = (c, w, h, t) => {
   const y0 = h / 2 - s / 2;
   const p = ph(t, 5);
   const k = p < 0.35 ? Math.cos(Math.PI * (p / 0.35)) : p < 0.65 ? -1 : Math.cos(Math.PI * (1 - (p - 0.65) / 0.35));
-  c.fillStyle = 'rgba(244,240,232,.14)';
+  c.fillStyle = 'rgba(255,255,255,.14)';
   c.fillRect(x0 + s / 2, y0, s / 2, s);
-  c.fillStyle = k < 0 ? 'rgba(242,184,75,.3)' : 'rgba(244,240,232,.14)';
+  c.fillStyle = k < 0 ? 'rgba(183,148,255,.3)' : 'rgba(255,255,255,.14)';
   const fw = (s / 2) * Math.abs(k);
   c.fillRect(k >= 0 ? x0 + s / 2 - fw : x0 + s / 2, y0, fw, s);
   if (p > 0.45) circle(c, x0 + s * 0.75, y0 + s * 0.35, 5, pal.accent, pal.paper, 2);
@@ -1206,10 +1206,10 @@ const lastlook: Preview = (c, w, h, t) => {
     const x = 20 + i * bw;
     if (i >= n) return text(c, '?', x + bw / 2, h * 0.6, font.serif(14, true), pal.ink3, 'center');
     const bh = (v / 100) * h * 0.7;
-    c.fillStyle = i === 5 && n > 5 ? pal.accent : i < Math.min(n, 5) ? 'rgba(244,240,232,.3)' : pal.ink;
+    c.fillStyle = i === 5 && n > 5 ? pal.accent : i < Math.min(n, 5) ? 'rgba(255,255,255,.3)' : pal.ink;
     c.fillRect(x + 3, h - 14 - bh, bw - 6, bh);
   });
-  line(c, 20, h * 0.42, w - 20, h * 0.52, 'rgba(46,233,215,.6)', 1, [4, 3]);
+  line(c, 20, h * 0.42, w - 20, h * 0.52, 'rgba(255,201,41,.6)', 1, [4, 3]);
 };
 
 const checksumP: Preview = (c, w, h, t) => {
@@ -1236,12 +1236,12 @@ const descent: Preview = (c, w, h, t) => {
   const p = ph(t, 6);
   c.beginPath();
   for (let i = 0; i <= 120; i++) i ? c.lineTo(X(i / 120), Y(f(i / 120))) : c.moveTo(X(0), Y(f(0)));
-  c.strokeStyle = p > 0.7 ? pal.ink2 : 'rgba(244,240,232,.08)';
+  c.strokeStyle = p > 0.7 ? pal.ink2 : 'rgba(255,255,255,.08)';
   c.lineWidth = 1.5;
   c.stroke();
   for (let k = 0; k <= Math.min(5, Math.floor(p * 9)); k++) {
     const u = 0.05 + k * 0.04;
-    circle(c, X(u), Y(f(u)), 3.5, undefined, '#F2B84B');
+    circle(c, X(u), Y(f(u)), 3.5, undefined, pal.amber);
   }
   if (p > 0.7) circle(c, X(0.75), Y(f(0.75)), 5, undefined, pal.accent);
 };
@@ -1261,7 +1261,7 @@ const projectionP: Preview = (c, w, h, t) => {
         c.beginPath();
         q.forEach((p, i) => (i ? c.lineTo(p.x, p.y) : c.moveTo(p.x, p.y)));
         c.closePath();
-        c.fillStyle = 'rgba(46,233,215,.6)';
+        c.fillStyle = 'rgba(255,201,41,.6)';
         c.fill();
         c.strokeStyle = pal.paper;
         c.stroke();
@@ -1269,7 +1269,7 @@ const projectionP: Preview = (c, w, h, t) => {
   const fx = w * 0.72;
   [3, 2, 2].forEach((v, i) => {
     for (let z = 0; z < v; z++) {
-      c.fillStyle = 'rgba(244,240,232,.3)';
+      c.fillStyle = 'rgba(255,255,255,.3)';
       c.fillRect(fx + i * 12, h * 0.75 - (z + 1) * 12, 10, 10);
     }
   });
@@ -1289,16 +1289,16 @@ const regimeP: Preview = (c, w, h, t) => {
   const marks = '✓✓✓✓✓✓✗✗✓✓✓✓';
   const n = Math.min(marks.length, Math.floor(ph(t, 6) * 15));
   for (let i = 0; i < n; i++) text(c, marks[i], 16 + (i * (w - 32)) / marks.length, h * 0.55, font.mono(12, 700), marks[i] === '✓' ? pal.accent : pal.signal, 'left');
-  if (n > 6) line(c, 16 + (6 * (w - 32)) / marks.length - 3, h * 0.3, 16 + (6 * (w - 32)) / marks.length - 3, h * 0.7, '#F2B84B', 1.5);
+  if (n > 6) line(c, 16 + (6 * (w - 32)) / marks.length - 3, h * 0.3, 16 + (6 * (w - 32)) / marks.length - 3, h * 0.7, pal.amber, 1.5);
   circle(c, w / 2 - 14, h * 0.25, 7, undefined, pal.accent);
-  c.fillStyle = '#F2B84B';
+  c.fillStyle = pal.amber;
   c.fillRect(w / 2 + 7, h * 0.25 - 7, 14, 14);
 };
 
 const bifurcationP: Preview = (c, w, h, t) => {
   // The logistic bifurcation diagram, drawn left to right.
   const n = Math.floor(ph(t, 6) * 140);
-  c.fillStyle = 'rgba(244,240,232,.6)';
+  c.fillStyle = 'rgba(255,255,255,.6)';
   for (let i = 0; i < n; i++) {
     const r = 2.8 + (i / 140) * 1.2;
     let x = 0.3;
@@ -1322,8 +1322,8 @@ const counterpointP: Preview = (c, w, h, t) => {
   gate(w * 0.4, h * 0.32, g1);
   gate(w * 0.6, h * 0.6, 1);
   text(c, 'A', w * 0.4, h * 0.12, font.mono(11, 700), pal.accent, 'center');
-  text(c, 'B', w * 0.6, h * 0.12, font.mono(11, 700), '#F2B84B', 'center');
-  const tok = p < 0.5 ? { x: w * 0.4 - 20 * (p / 0.5), y: h * 0.2 + (h * 0.55 * p) / 0.5, col: pal.accent } : { x: w * 0.4 + 20 * ((p - 0.5) / 0.5), y: h * 0.2 + (h * 0.55 * (p - 0.5)) / 0.5, col: '#F2B84B' };
+  text(c, 'B', w * 0.6, h * 0.12, font.mono(11, 700), pal.amber, 'center');
+  const tok = p < 0.5 ? { x: w * 0.4 - 20 * (p / 0.5), y: h * 0.2 + (h * 0.55 * p) / 0.5, col: pal.accent } : { x: w * 0.4 + 20 * ((p - 0.5) / 0.5), y: h * 0.2 + (h * 0.55 * (p - 0.5)) / 0.5, col: pal.amber };
   circle(c, tok.x, tok.y, 5, undefined, tok.col);
   for (let b = 0; b < 3; b++) {
     c.strokeStyle = pal.line;

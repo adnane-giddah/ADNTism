@@ -37,7 +37,7 @@ function specimen(g: GameMeta, canvases: Map<HTMLCanvasElement, string>) {
   const el = h(
     'a',
     { class: 'spec', href: href(`/e/${g.id}`), 'data-cats': g.categories.join(' ') },
-    h('div', { class: 'spec-top' }, h('span', { class: 'cap spec-no' }, 'EXP ' + g.no), h('span', { class: 'cap spec-cat' }, g.categories.join(' · '))),
+    h('div', { class: 'spec-top' }, h('span', { class: 'cap spec-no' }, 'No. ' + g.no), h('span', { class: 'cap spec-cat' }, g.categories.join(' · '))),
     h('div', { class: 'spec-viz' }, cv),
     h('h3', null, g.name, h('span', { class: 'spec-go' }, icon(icons.arrow))),
     h('p', null, g.tagline),
@@ -138,8 +138,8 @@ export function homePage(): Page {
         h(
           'div',
           null,
-          h('div', { class: 'eyebrow cap' }, h('i', { class: 'live-dot' }), '00 · Calibration', h('span', { class: 'sep' }, '/'), 'Precision reaction laboratory'),
           h('h1', null, 'How ', h('em', null, 'close'), h('br'), 'can you get', h('span', { class: 'q' }, '?')),
+          h('span', { class: 'sig-sticker' }, 'made by ADN ✦'),
           h(
             'p',
             { class: 'lede' },
@@ -170,7 +170,7 @@ export function homePage(): Page {
       h(
         'section',
         { class: 'wrap', id: 'experiments', 'aria-label': 'Experiments' },
-        h('div', { class: 'index-head' }, h('h2', null, h('em', null, 'Experiments'), h('sup', null, `01—${String(games.length).padStart(2, '0')}`)), chips),
+        h('div', { class: 'index-head' }, h('h2', null, h('em', null, 'Experiments')), chips),
         h('div', { class: 'specimens' }, ...specs.map((s) => s.el)),
       ),
     ),

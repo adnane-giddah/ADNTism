@@ -10,9 +10,11 @@ export interface Palette {
   line: string;
   line2: string;
   signal: string;
-  /** Electric cyan: ideal markers, targets, precision. Coral (signal) stays reserved for error. */
+  /** Yellow: ideal markers, targets, precision. Orchid (signal) stays reserved for error. */
   accent: string;
   signalSoft: string;
+  /** Pale yellow: near-misses and in-between states. */
+  amber: string;
   liquid: string;
   liquidDeep: string;
   glass: string;
@@ -20,20 +22,21 @@ export interface Palette {
 }
 
 export const pal: Palette = {
-  paper: '#0A0A0C',
-  paper2: '#111215',
-  ink: '#F4F0E8',
-  ink2: '#A2A5AD',
-  ink3: '#6B6F7A',
-  line: 'rgba(244,240,232,.16)',
-  line2: 'rgba(244,240,232,.08)',
-  signal: '#FF6B53',
-  accent: '#2EE9D7',
-  signalSoft: 'rgba(255,107,83,.16)',
-  liquid: 'rgba(110,165,205,.26)',
-  liquidDeep: 'rgba(120,175,215,.42)',
+  paper: '#3A157E',
+  paper2: '#451C93',
+  ink: '#FFFFFF',
+  ink2: '#D8CCF2',
+  ink3: '#C2B2EC',
+  line: 'rgba(216,204,242,.22)',
+  line2: 'rgba(216,204,242,.11)',
+  signal: '#F25CFF',
+  accent: '#FFC929',
+  signalSoft: 'rgba(242,92,255,.16)',
+  amber: '#FFE07A',
+  liquid: 'rgba(183,148,255,.24)',
+  liquidDeep: 'rgba(183,148,255,.42)',
   glass: 'rgba(255,255,255,.08)',
-  shade: 'rgba(0,0,0,.55)',
+  shade: 'rgba(10,2,26,.55)',
 };
 
 /** Re-read the CSS tokens (after theme / contrast changes). */
@@ -50,6 +53,7 @@ export function refreshPalette() {
   pal.signal = g('--signal');
   pal.accent = g('--accent');
   pal.signalSoft = g('--signal-soft');
+  pal.amber = g('--amber');
   pal.liquid = g('--liquid');
   pal.liquidDeep = g('--liquid-deep');
   pal.glass = g('--glass');
@@ -59,9 +63,9 @@ export function refreshPalette() {
 // Canvas text follows the "large text" setting.
 const sz = (px: number) => Math.round(px * textScale() * 10) / 10;
 export const font = {
-  mono: (px: number, w = 450) => `${w} ${sz(px)}px "JetBrains Mono Variable", ui-monospace, Menlo, monospace`,
-  sans: (px: number, w = 450) => `${w} ${sz(px)}px "Inter Variable", system-ui, sans-serif`,
-  serif: (px: number, italic = false) => `${italic ? 'italic ' : ''}400 ${sz(px)}px "Playfair Display Variable", Georgia, serif`,
+  mono: (px: number, w = 450) => `${w} ${sz(px)}px "Bricolage Grotesque Variable", system-ui, sans-serif`,
+  sans: (px: number, w = 450) => `${w} ${sz(px)}px "Bricolage Grotesque Variable", system-ui, sans-serif`,
+  serif: (px: number, italic = false) => `${italic ? 'italic ' : ''}750 ${sz(px)}px "Bricolage Grotesque Variable", system-ui, sans-serif`,
 };
 
 export const TAU = Math.PI * 2;
@@ -247,7 +251,7 @@ export function beatLamp(c: C, x: number, y: number, r: number, flash: number) {
     if (flash > 0) {
       // A soft bloom around the lit lamp.
       const g = c.createRadialGradient(x, y, r * 0.5, x, y, r * 3);
-      g.addColorStop(0, 'rgba(46,233,215,.28)');
+      g.addColorStop(0, 'rgba(255,201,41,.28)');
       g.addColorStop(1, 'rgba(0,0,0,0)');
       c.globalAlpha = flash;
       c.fillStyle = g;

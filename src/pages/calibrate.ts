@@ -51,7 +51,7 @@ export function calibration() {
   const errLine = h('p', { class: 'cal-err' }, 'Press and hold anywhere in this box. Release at exactly one second.');
   const tgtLabel = h('span', { class: 'mono' }, target.label + ' s');
   const tgtName = h('span', { class: 'cap' }, target.name);
-  const status = h('span', { class: 'cap' }, saved.n ? `${saved.n} attempts on this device` : 'Space works too');
+  const status = h('span', { class: 'cap' }, saved.n ? `${saved.n} attempts on this device` : '');
   // Personal baseline: over/under-estimation at this target. Not a device-latency calibration.
   const tendency = h('p', { class: 'cal-tend cap' });
   const paintTendency = () => {
@@ -78,14 +78,13 @@ export function calibration() {
     h(
       'div',
       { class: 'cal-head' },
-      h('span', { class: 'cap' }, '00 · Calibration'),
       rec,
       h('span', { class: 'cal-target' }, h('span', { class: 'cap' }, 'Target '), tgtLabel, ' ', tgtName),
     ),
     h('div', { class: 'cal-read', 'aria-live': 'polite' }, num, h('span', { class: 'u' }, 's'), errLine),
     host,
     tendency,
-    h('div', { class: 'cal-foot' }, status, h('span', { class: 'cap' }, 'press → release')),
+    h('div', { class: 'cal-foot' }, status),
   );
 
   const stage = new Stage(host);

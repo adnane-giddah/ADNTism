@@ -49,7 +49,7 @@ export function start(root: HTMLElement) {
 
   const rail = h('nav', { class: 'a-rail', 'aria-label': 'Sections' });
   const view = h('main', { class: 'a-view' });
-  const rotate = h('div', { class: 'a-rotate', role: 'alert' }, icon(icons.rotate), h('p', null, 'Turn your phone sideways'), h('span', { class: 'a-label' }, 'EPSILON PLAYS IN LANDSCAPE'));
+  const rotate = h('div', { class: 'a-rotate', role: 'alert' }, icon(icons.rotate), h('p', null, 'Turn your phone sideways'), h('span', { class: 'a-label' }, 'Epsilon plays in landscape'));
   root.replaceChildren(h('div', { class: 'a-shell' }, rail, view), rotate);
 
   const stack: Factory[] = [];
@@ -111,9 +111,8 @@ export function start(root: HTMLElement) {
     rail.replaceChildren(
       h('div', { class: 'a-logo', 'aria-hidden': 'true' }, 'ε'),
       item('lab', icons.flask, 'Lab', nav.lab),
-      item('telemetry', icons.pulse, 'Telemetry', () => nav.telemetry()),
-      item('system', icons.sliders, 'System', nav.system),
-      h('div', { class: 'a-rail-foot' }, h('i', { class: 'a-dot' }), 'LIVE'),
+      item('telemetry', icons.pulse, 'Records', () => nav.telemetry()),
+      item('system', icons.sliders, 'Settings', nav.system),
     );
   }
 

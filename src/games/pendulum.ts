@@ -498,8 +498,8 @@ const factory: GameFactory = (api) => {
         else c.moveTo(x, y);
       }
       c.save();
-      c.strokeStyle = alpha('#3BE38B', 0.85);
-      c.shadowColor = alpha('#3BE38B', 0.6);
+      c.strokeStyle = alpha(pal.accent, 0.85);
+      c.shadowColor = alpha(pal.accent, 0.6);
       c.shadowBlur = 8;
       c.lineWidth = 1.6;
       c.stroke();

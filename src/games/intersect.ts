@@ -254,7 +254,7 @@ const factory: GameFactory = (api) => {
       const at = last.hit ? last.meet : rd.P;
       api.judge(last.miss, { x: cx + at.x * k, y: cy + at.y * k - 40 });
       if (last.hit) {
-        api.fx.burst(cx + last.meet.x * k, cy + last.meet.y * k, '#FFB834', 22, 240, 2.2);
+        api.fx.burst(cx + last.meet.x * k, cy + last.meet.y * k, pal.amber, 22, 240, 2.2);
         api.fx.shake(3, 0.2);
       }
     }

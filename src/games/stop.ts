@@ -315,7 +315,7 @@ const factory: GameFactory = (api) => {
     solidBlock(c, mx - 9 + shake, ty - 18, 18, 18);
     if (braking) {
       // Brake shoes bite: sparks fly back off the rail while it is still moving.
-      if (phase === 'run' && s.v > 2) api.fx.spray(mx - 9, ty, Math.PI + 0.25, 0.5, Math.random() < 0.5 ? '#FFB834' : pal.signal, 2, 60 + s.v * 3, 1.5);
+      if (phase === 'run' && s.v > 2) api.fx.spray(mx - 9, ty, Math.PI + 0.25, 0.5, Math.random() < 0.5 ? pal.amber : pal.signal, 2, 60 + s.v * 3, 1.5);
       glow(c, mx, ty - 9, 30, pal.signal, 0.8);
       c.fillStyle = pal.signal;
       c.fillRect(mx - 13, ty - 22, 26, 3);

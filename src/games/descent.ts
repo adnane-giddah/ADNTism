@@ -479,7 +479,7 @@ const factory: GameFactory = (api) => {
         const y = geo.y + m.p[1] * side;
         c.beginPath();
         c.arc(x, y, 14, 0, Math.PI * 2);
-        c.fillStyle = `rgba(${Math.round(20 + 200 * v)},${Math.round(80 + 60 * v)},${Math.round(60 + 140 * (1 - v))},0.9)`;
+        c.fillStyle = `rgba(${Math.round(91 + 164 * v)},${Math.round(33 + 168 * v)},${Math.round(182 - 141 * v)},0.9)`;
         c.fill();
         // Raw heights, in the landscape's own units — comparable with each other, not with an unknown floor.
         text(c, (m.v * 100).toFixed(0), x, y + 1, font.mono(9, 600), pal.ink, 'center', 'middle');

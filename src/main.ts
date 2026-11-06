@@ -1,10 +1,8 @@
-import '@fontsource-variable/inter';
-import '@fontsource-variable/jetbrains-mono';
-import '@fontsource-variable/playfair-display';
-import '@fontsource-variable/playfair-display/wght-italic.css';
+import '@fontsource-variable/bricolage-grotesque';
 import './styles.css';
 import './lab.css';
 import './mobile.css';
+import './royal.css';
 
 import { unlockAudio } from './core/audio';
 import { refreshPalette } from './core/draw';

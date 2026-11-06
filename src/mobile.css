@@ -7,7 +7,7 @@
   --safe-l: env(safe-area-inset-left, 0px);
   --safe-r: env(safe-area-inset-right, 0px);
   --tabbar: 64px;
-  --brand: #ffd60a;
+  --brand: #ffc929;
 }
 
 /* Desktop: the tab icons stay hidden; labels behave as before. */
@@ -100,8 +100,8 @@ html.standalone .xp {
     color: var(--ink-3);
     text-decoration: none;
     font: 500 10px/1 var(--mono) !important;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    letter-spacing: 0;
+    text-transform: none;
     transition: color 0.2s var(--e);
   }
   .site-nav a::after {
@@ -125,7 +125,7 @@ html.standalone .xp {
     color: var(--brand);
   }
   :root[data-theme='light'] .site-nav a[aria-current='page'] .tab-ico {
-    background: #000;
+    background: var(--royal);
   }
   .site-nav a:active .tab-ico {
     transform: scale(0.92);
@@ -190,7 +190,7 @@ html.standalone .xp {
 }
 .get-app h2 {
   margin: 0;
-  font: 400 clamp(30px, 4vw, 48px) / 1 var(--serif);
+  font: 720 clamp(30px, 4vw, 48px) / 1 var(--serif);
 }
 .get-app h2 em {
   font-style: italic;
@@ -227,10 +227,10 @@ html.standalone .xp {
   padding: 3px 8px;
   border-radius: 999px;
   background: var(--brand);
-  color: #000;
+  color: #24094f;
   font: 600 10px/1.2 var(--mono);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
 }
 .ga-card .ga-top {
   display: flex;
@@ -243,7 +243,7 @@ html.standalone .xp {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: #000;
+  background: var(--royal);
   color: var(--brand);
 }
 .ga-card h3 {
@@ -276,7 +276,7 @@ html.standalone .xp {
 }
 .btn.brand {
   background: var(--brand);
-  color: #000;
+  color: #24094f;
   border-color: var(--brand);
   font-weight: 600;
 }

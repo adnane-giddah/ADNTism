@@ -146,7 +146,7 @@ export class Fx {
   /** Falling confetti chips from a point (or a line across the top when x is omitted). */
   confetti(n = 70, x?: number, y = -10) {
     if (this.quiet) return;
-    const cols = [pal.accent, pal.ink, '#FFB834', pal.signal];
+    const cols = [pal.accent, pal.ink, pal.amber, pal.signal];
     for (let i = 0; i < n && this.ps.length < MAX_P; i++) {
       const px = x ?? rnd(this.w * 0.15, this.w * 0.85);
       const a = x == null ? rnd(Math.PI * 0.3, Math.PI * 0.7) : rnd(-Math.PI * 0.95, -Math.PI * 0.05);
@@ -222,7 +222,7 @@ export class Fx {
         this.ring(x, y, pal.ink2, 56, 1.5, 0.5);
         break;
       case 'good':
-        this.burst(x, y, '#FFB834', 7, 130, 1.8);
+        this.burst(x, y, pal.amber, 7, 130, 1.8);
         break;
       default:
         // A miss falls and dims: a few coral crumbs, a flick of the canvas.
@@ -247,8 +247,8 @@ export class Fx {
       this.flash(pal.accent, 0.3);
     } else if (kind === 'best') {
       this.confetti(54);
-      this.ring(cx, cy, '#FFB834', Math.min(this.w, this.h) * 0.45, 2.5, 1, 10);
-      this.burst(cx, cy, '#FFB834', 28, 300, 2.4);
+      this.ring(cx, cy, pal.amber, Math.min(this.w, this.h) * 0.45, 2.5, 1, 10);
+      this.burst(cx, cy, pal.amber, 28, 300, 2.4);
     } else if (kind === 'near') {
       this.ring(cx, cy, pal.accent, Math.min(this.w, this.h) * 0.3, 2, 0.8, 10);
       this.burst(cx, cy, pal.accent, 16, 200, 2.2);
@@ -374,7 +374,7 @@ export class Fx {
 
   private drawStreak(c: CanvasRenderingContext2D) {
     const n = this.streakShown;
-    const col = n >= 8 ? '#F4F0E8' : n >= 5 ? '#FFB834' : pal.accent;
+    const col = n >= 8 ? pal.ink : n >= 5 ? pal.amber : pal.accent;
     const a = clamp(0.035 * n, 0, 0.3);
     const depth = 14 + Math.min(n, 10) * 4;
     c.globalAlpha = a;

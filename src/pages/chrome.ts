@@ -1,5 +1,5 @@
 import { h, icon, icons } from '../core/dom';
-import { dailyGame, dailyKey, games } from '../games/registry';
+import { dailyGame, dailyKey } from '../games/registry';
 import { settings, setSetting, toggleTheme } from '../core/settings';
 import { stats } from '../core/records';
 import { href } from '../core/route';
@@ -53,9 +53,8 @@ export function siteBar(active: 'experiments' | 'daily' | 'records' | 'about' | 
         'a',
         { class: 'mark', href: href('/'), 'aria-label': 'epsilon — home' },
         h('span', { class: 'eps', 'aria-hidden': 'true' }, 'ε'),
-        h('span', { class: 'word-stack' }, h('span', { class: 'word' }, 'Epsilon', h('span', { class: 'lab-badge' }, 'LAB·00')), h('span', { class: 'def' }, 'a laboratory of very small errors')),
+        h('span', { class: 'word-stack' }, h('span', { class: 'word' }, 'Epsilon'), h('span', { class: 'def' }, 'a laboratory of very small errors')),
       ),
-      h('span', { class: 'site-status cap' }, h('i', { class: 'live-dot' }), `Apparatus online · ${games.length} experiments`),
       h(
         'nav',
         { class: 'site-nav', 'aria-label': 'Main' },
@@ -84,21 +83,12 @@ export function siteFoot() {
         h('span', { class: 'cap' }, 'epsilon, n.'),
         ' — an arbitrarily small positive quantity. The amount by which you missed.',
       ),
-      h(
-        'dl',
-        { class: 'foot-tele' },
-        ...[
-          ['Execution', 'In browser'],
-          ['Records', 'On device'],
-          ['Network', 'Optional'],
-        ].map(([k, v]) => h('div', null, h('dt', { class: 'cap' }, k), h('dd', { class: 'mono' }, v))),
-      ),
     ),
     h(
       'div',
       { class: 'wrap foot-base cap' },
-      h('span', null, '© Epsilon Labs · all deviations archived'),
-      h('span', null, 'Precision level: critical'),
+      h('p', { class: 'foot-sig' }, 'Designed & built by', h('b', null, 'Adnane Meddah'), h('span', { class: 'flag' }, 'Made in Algeria')),
+      h('span', null, `© ${new Date().getFullYear()} epsilon`),
     ),
   );
 }

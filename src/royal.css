@@ -1,0 +1,307 @@
+/* ε epsilon — ROYAL PURPLE edition. Loaded last; designed in Stitch ("Royal Purple Lab").
+   Flat colour blocks instead of glows and glass: royal purple planes, white ink, yellow for whatever
+   matters (the target, the live element, the primary action), hard offset shadows, hand-made stickers. */
+
+:root {
+  --hard: 4px 4px 0 var(--accent);
+  --radius: 12px;
+}
+:root[data-theme='light'] {
+  --hard: 4px 4px 0 var(--royal);
+}
+
+/* Page: flat purple with a faint dot grid — no gradient blobs. */
+body,
+:root[data-theme='light'] body {
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--ink) 7%, transparent) 1px, transparent 1.4px) 0 0 / 26px 26px,
+    var(--paper);
+  background-attachment: fixed;
+}
+::selection {
+  background: var(--accent);
+  color: var(--on-ink);
+}
+
+/* Headlines: chunky grotesque, tight, upright. */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.035em;
+}
+em {
+  font-style: normal;
+}
+.hero h1 em,
+.index-head h2 em,
+.page-head h1 em {
+  position: relative;
+  color: var(--accent);
+  text-shadow: none;
+  white-space: nowrap;
+}
+.hero h1 em::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  right: -4%;
+  bottom: -0.06em;
+  height: 0.16em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 16' preserveAspectRatio='none'%3E%3Cpath d='M3 11C40 4 80 3 118 6s52 4 79-1' fill='none' stroke='%23ffffff' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+:root[data-theme='light'] .hero h1 em::after {
+  filter: invert(1) sepia(1) saturate(6) hue-rotate(220deg) brightness(0.6);
+}
+.hero .lede b {
+  color: var(--ink);
+  font-weight: 700;
+  background: linear-gradient(transparent 62%, color-mix(in srgb, var(--accent) 38%, transparent) 62%);
+}
+
+/* The signature sticker next to the headline. */
+.sig-sticker {
+  display: inline-block;
+  margin: 18px 0 4px;
+  padding: 8px 14px 7px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--on-ink);
+  font: 700 13px/1 var(--mono);
+  letter-spacing: 0.04em;
+  transform: rotate(-3deg);
+  box-shadow: 3px 3px 0 var(--royal-hi);
+}
+:root[data-theme='light'] .sig-sticker {
+  background: #ffc929;
+  color: #24094f;
+  box-shadow: 3px 3px 0 var(--royal);
+}
+
+/* Logo tile: royal purple with a yellow ε (same as the icon). */
+.mark .eps,
+.xp-back .eps {
+  background: var(--royal);
+  color: #ffc929;
+  box-shadow: 2px 2px 0 #ffc929;
+}
+.lab-badge {
+  background: var(--accent) !important;
+  color: var(--on-ink) !important;
+  border-color: var(--accent) !important;
+}
+
+/* Header: a solid bar with a hairline, no frosted glass. */
+.site-bar {
+  background: var(--paper);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid var(--line-2);
+}
+.site-nav a[aria-current='page'] {
+  color: var(--accent);
+}
+
+/* Buttons: yellow primary with a hard shadow; everything 2px and solid. */
+.btn {
+  border-width: 2px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+.btn.primary,
+.btn.go {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-ink);
+  box-shadow: 3px 3px 0 color-mix(in srgb, var(--ink) 85%, transparent);
+}
+.btn.primary:hover,
+.btn.go:hover {
+  background: var(--accent);
+  box-shadow: 5px 5px 0 color-mix(in srgb, var(--ink) 85%, transparent);
+  transform: translate(-2px, -2px);
+}
+.btn.primary:active,
+.btn.go:active {
+  box-shadow: 0 0 0 transparent;
+  transform: translate(2px, 2px);
+}
+
+/* Panels: no blur, no glow — a solid card with a real border. */
+.frame {
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--paper-2);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+.cal[data-holding] {
+  border-color: var(--accent);
+  box-shadow: var(--hard);
+}
+
+/* Daily band: a solid royal-purple block. */
+.band {
+  border: 2px solid var(--royal-hi);
+  border-radius: var(--radius);
+  background: var(--royal);
+  color: #fff;
+}
+.band .cap,
+.band .what .nm {
+  color: #fff;
+}
+.band .cap {
+  opacity: 0.8;
+}
+
+/* Filter chips: selected = yellow. */
+.chip {
+  border-width: 2px;
+}
+.chip[aria-pressed='true'],
+:root[data-theme='light'] .chip[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-ink);
+  box-shadow: none;
+}
+.chip[aria-pressed='true'] .n {
+  background: color-mix(in srgb, var(--on-ink) 18%, transparent);
+}
+
+/* Experiment cards: solid, bordered, a hard yellow shadow on hover instead of a glow. */
+.spec {
+  border: 2px solid var(--line-2);
+  border-radius: var(--radius);
+  background: var(--paper-2);
+}
+.spec:hover,
+.spec:focus-visible {
+  background: var(--paper-3);
+  border-color: var(--accent);
+  box-shadow: var(--hard);
+  transform: translate(-3px, -3px);
+}
+.spec::after {
+  display: none;
+}
+.spec-viz {
+  border-radius: 8px;
+  background: var(--paper);
+}
+.spec-stars {
+  color: var(--accent);
+}
+.facts li {
+  border-width: 2px;
+}
+
+/* Game stage: flat deep purple, no halo. */
+.xp .xp-stage {
+  border: 2px solid var(--line-2);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 100% 48px,
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 48px 100%,
+    color-mix(in srgb, var(--paper) 80%, #000);
+  box-shadow: none;
+}
+:root[data-theme='light'] .xp .xp-stage {
+  background:
+    linear-gradient(var(--line-2) 1px, transparent 1px) 0 0 / 100% 48px,
+    linear-gradient(90deg, var(--line-2) 1px, transparent 1px) 0 0 / 48px 100%,
+    #fff;
+}
+.goal-meter i {
+  background: var(--accent);
+  box-shadow: none;
+}
+
+/* Footer signature. */
+.site-foot {
+  border-top: 2px solid var(--line-2);
+}
+.foot-sig {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  margin: 0;
+  font: 500 14px/1.4 var(--sans);
+  color: var(--ink-2);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.foot-sig b {
+  font: 800 18px/1 var(--serif);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.foot-sig .flag {
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--on-ink);
+  font: 700 11px/1.2 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Game title in the top bar: as heavy as the other headlines. */
+.xp-title .nm {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* One typeface everywhere — the headline grotesque. No tiny spaced-out capitals. */
+html,
+body,
+button,
+input,
+select,
+textarea,
+kbd,
+.mono {
+  font-family: var(--sans);
+}
+.mono,
+.cap,
+kbd,
+.cal-read,
+.hud,
+.spec-meta {
+  font-variant-numeric: tabular-nums;
+}
+.cap {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.btn {
+  font: 700 15px/1 var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.chip,
+.site-nav a,
+.facts li,
+.deck-badge,
+.foot-sig .flag {
+  font-family: var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.site-nav a {
+  font-size: 15px;
+  font-weight: 650;
+}
+.chip {
+  font-size: 14px;
+  font-weight: 600;
+}
+.facts li {
+  font-size: 13px;
+}

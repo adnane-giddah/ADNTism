@@ -5,9 +5,9 @@ const config: CapacitorConfig = {
   appId: 'dz.adnane.epsilon',
   appName: 'epsilon',
   webDir: 'dist',
-  backgroundColor: '#0A0A0C',
+  backgroundColor: '#3A157E',
   android: {
-    backgroundColor: '#0A0A0C',
+    backgroundColor: '#3A157E',
   },
 };
 

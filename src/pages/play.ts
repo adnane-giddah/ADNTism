@@ -142,8 +142,8 @@ export async function playPage(id: string, wantDaily: boolean): Promise<Page> {
     'header',
     { class: 'xp-bar' },
     h('a', { class: 'xp-back', href: href(isDailyGame ? '/daily' : '/'), 'aria-label': 'Back' }, icon(icons.back), h('span', { class: 'eps' }, 'ε')),
-    h('div', { class: 'xp-title' }, h('span', { class: 'cap no' }, 'EXP ' + g.no), h('h1', { class: 'nm', style: 'margin:0;font-weight:400' }, g.name), runTag),
-    h('div', { class: 'xp-controls' }, h('span', { class: 'cap ctl-label' }, 'Protocol'), picker, modePicker),
+    h('div', { class: 'xp-title' }, h('span', { class: 'cap no' }, 'No. ' + g.no), h('h1', { class: 'nm', style: 'margin:0' }, g.name), runTag),
+    h('div', { class: 'xp-controls' }, h('span', { class: 'cap ctl-label' }, 'Level'), picker, modePicker),
     h('div', { class: 'xp-tools' }, soundButton(), themeButton('iconbtn theme-btn'), helpBtn),
   );
 
@@ -235,8 +235,7 @@ export async function playPage(id: string, wantDaily: boolean): Promise<Page> {
     h(
       'section',
       { class: 'deck-head' },
-      h('div', { class: 'deck-top' }, h('span', { class: 'cap' }, 'Protocol telemetry'), deckBadge),
-      h('h2', { class: 'deck-title' }, 'Observation ', h('em', null, 'Deck')),
+      h('div', { class: 'deck-top' }, h('h2', { class: 'deck-title' }, 'Your ', h('em', null, 'results')), deckBadge),
     ),
     res,
     readouts,
@@ -406,9 +405,9 @@ export async function playPage(id: string, wantDaily: boolean): Promise<Page> {
     runTag.hidden = k === 'ranked';
     runTag.textContent = k === 'daily' ? `Daily ${dailyNo()} · ${DAILY_TRIES - officialLeft() + 1}/${DAILY_TRIES}` : k === 'challenge' ? `Challenge ${seedToString(seed)}` : warmup ? 'Warm-up' : KIND_LABEL[k];
     runTag.dataset.kind = k;
-    seedEl.textContent = (k === 'daily' ? 'DAILY ' : 'SEED ') + seedToString(seed);
+    seedEl.textContent = (k === 'daily' ? 'Daily ' : 'Seed ') + seedToString(seed);
     tagKind.textContent = [KIND_LABEL[k], levelLabel[level], seedToString(seed)].join(' · ');
-    deckBadge.textContent = 'ISO · ' + KIND_LABEL[k].toUpperCase();
+    deckBadge.textContent = KIND_LABEL[k];
     practiceBtn.setAttribute('aria-pressed', String(practice));
     practiceBtn.disabled = official() || isChallenge;
     practiceBtn.title = official() ? 'Official daily attempts cannot be practice' : isChallenge ? 'Challenge runs are already unranked' : 'Practice: unranked attempts, sometimes with extra help';

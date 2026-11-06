@@ -193,7 +193,7 @@ const factory: GameFactory = (api) => {
       taps.forEach((tp, i) => {
         if (!i) return;
         const e = Math.abs(errs[i - 1]);
-        const col = st && e <= st[2] ? pal.accent : st && e <= st[0] ? pal.ink : '#FFB834';
+        const col = st && e <= st[2] ? pal.accent : st && e <= st[0] ? pal.ink : pal.amber;
         const x = L + (clamp(tp - taps[0], -60, span) / span) * (R - L);
         timers.push(window.setTimeout(() => api.fx.burst(x, y2 - 20, col, 10, 140, 1.8), 120 + i * 90));
       });

@@ -220,7 +220,7 @@ function rgbOf(col: string): [number, number, number] | null {
 }
 const rgba = (col: string, a: number) => {
   const c = rgbOf(col);
-  return c ? `rgba(${c[0]},${c[1]},${c[2]},${a})` : `rgba(238,237,232,${a})`;
+  return c ? `rgba(${c[0]},${c[1]},${c[2]},${a})` : `rgba(255,255,255,${a})`;
 };
 const isDark = () => {
   const c = rgbOf(pal.paper);
@@ -660,7 +660,7 @@ const factory: GameFactory = (api) => {
       const k = 18 * (1 - crashP) ** 2;
       c.translate((Math.random() - 0.5) * k, (Math.random() - 0.5) * k);
     }
-    c.fillStyle = dark ? '#050507' : pal.paper;
+    c.fillStyle = dark ? '#2A0D60' : pal.paper;
     c.fillRect(-30, -30, W + 60, H + 60);
     proj(0, DRAW, 0);
     const fx = px;
@@ -702,7 +702,7 @@ const factory: GameFactory = (api) => {
       const lit = j % 4 === 0;
       // Spokes: the lit rails glow, alternating the gear colour and coral.
       c.globalAlpha = lit ? 0.5 : 0.14;
-      c.strokeStyle = lit ? (j % 8 === 0 ? accent(1, 8) : 'rgba(255,94,87,0.9)') : pal.ink3;
+      c.strokeStyle = lit ? (j % 8 === 0 ? accent(1, 8) : rgba(pal.signal, 0.9)) : pal.ink3;
       c.lineWidth = lit ? 1.75 : 1;
       c.beginPath();
       DS.forEach((d, i) => {
@@ -813,7 +813,7 @@ const factory: GameFactory = (api) => {
       let j1 = ri;
       while (j1 < rows.length && rows[j1].z - ds < DRAW) j1++;
       // White slabs with a gear-coloured rim; the sides and tops are shaded grey so they read as solid.
-      const front = dark ? '#f4f2ec' : '#ffffff';
+      const front = dark ? '#FFFFFF' : '#ffffff';
       const side = `hsl(${hue}, 8%, ${dark ? 58 : 74}%)`;
       const top = `hsl(${hue}, 6%, ${dark ? 76 : 86}%)`;
       const rIn = R - H_OB;
@@ -916,7 +916,7 @@ const factory: GameFactory = (api) => {
           }
           // Neon outline of the face, with a haze that swells as the wall gets close.
           const lw0 = clamp((2 * CAM) / (CAM + Math.max(dF, 0.1)), 0.6, 4);
-          const ncol = danger ? '#ff5e57' : accent(1, dark ? 12 : 0);
+          const ncol = danger ? pal.signal : accent(1, dark ? 12 : 0);
           if (dark && dF < 40) {
             c.globalCompositeOperation = 'lighter';
             c.globalAlpha = fog * 0.22 * clamp(1 - dF / 40, 0, 1);
@@ -996,7 +996,7 @@ const factory: GameFactory = (api) => {
         }
         const life = 1 - tt / 0.45;
         c.globalAlpha = life * 0.8;
-        c.fillStyle = p.coral ? '#ff5e57' : accent(1, 10);
+        c.fillStyle = p.coral ? pal.signal : accent(1, 10);
         c.beginPath();
         c.arc(p.x + p.vx * tt, p.y + p.vy * tt, Math.max(0.5, u * 0.18 * life), 0, TAU);
         c.fill();
@@ -1043,9 +1043,9 @@ const factory: GameFactory = (api) => {
         const flame = c.createLinearGradient(0, u * 0.4, 0, u * 0.5 + fl);
         // Plasma thruster: the gear's colour cruising, coral when the slipstream is pushing you.
         const hot = boostVis > 0.03;
-        flame.addColorStop(0, hot ? 'rgba(255,214,200,1)' : accent(1, dark ? 20 : 10));
-        flame.addColorStop(0.35, hot ? 'rgba(255,94,87,0.9)' : accent(0.8, 6));
-        flame.addColorStop(1, hot ? 'rgba(255,94,87,0)' : accent(0));
+        flame.addColorStop(0, hot ? 'rgba(255,240,255,1)' : accent(1, dark ? 20 : 10));
+        flame.addColorStop(0.35, hot ? rgba(pal.signal, 0.9) : accent(0.8, 6));
+        flame.addColorStop(1, hot ? rgba(pal.signal, 0) : accent(0));
         c.fillStyle = flame;
         c.beginPath();
         c.moveTo(-u * 0.24, u * 0.42);
@@ -1066,7 +1066,7 @@ const factory: GameFactory = (api) => {
       c.lineTo(-u * 0.38, u * 0.3);
       c.lineTo(-u * 1.1, u * 0.55);
       c.closePath();
-      c.fillStyle = dark ? '#f4f0e8' : accent(1);
+      c.fillStyle = dark ? '#FFFFFF' : accent(1);
       c.fill();
       c.restore();
       c.lineWidth = 1.2;
@@ -1094,7 +1094,7 @@ const factory: GameFactory = (api) => {
       const x = sx + b.vx * tt;
       const y = sy - (b.ship ? 0 : u * 2) + b.vy * tt + 260 * tt * tt;
       c.globalAlpha = clamp(1 - tt / 1.1, 0, 1);
-      c.fillStyle = b.ship ? accent(1) : dark ? '#f4f2ec' : `hsl(${hue}, 6%, 80%)`;
+      c.fillStyle = b.ship ? accent(1) : dark ? '#FFFFFF' : `hsl(${hue}, 6%, 80%)`;
       c.save();
       c.translate(x, y);
       c.rotate(b.rot + b.vr * tt);
